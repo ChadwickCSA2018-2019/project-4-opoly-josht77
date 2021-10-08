@@ -1,21 +1,20 @@
 import java.util.Random;
 
 public class Opoly {
-	private int size; 
-	  private int spin; 
-	  private int reward; 
-	  private int turnNumber;
-	  private char[] board; 
-	  private boolean first;
-	  private Random random;
+	  private static int size; //how big the board is
+	  private static int spin; //value of the spinner
+	  private static int reward; //total points
+	  private static int turnNumber; //how many turns have passed
+	  private static char[] board; //the array of the board and holding the position of the player
+	  private static boolean first; //temp variable to create the array with *'s and o
+	  private static Random random;
 
-	  public Opoly(int bs, int seed){ //constructor
-	    size = bs; //sets the size passed by the main method defined by the user
+	  public Opoly(int s){ //constructor
+	    size = s; //sets the size passed by the main method defined by the user
 	    reward = 100; //startes player with 100 points
 	    turnNumber = 0; //sets turn number to 0
 	    board = new char[size]; //creates the array
 	    first = true; //temp variable to create the array with *'s and o
-	    random = new Random(seed);
 	  }
 
 	  public void playGame(){
@@ -27,11 +26,11 @@ public class Opoly {
 	    Opoly.displayReport(); //displays the stats when the game is over
 	  }
 
-	  public void spin(){
-	   return random.nextInt(5) + 1;
+	  public static void spin(){
+	    spin = (random.nextInt(5)) + 1; //generates a number from 1 to 5
 	  }
 
-	  public void move(){
+	  public static void move(){
 	    if (turnNumber % 10 == 0) //RULE #4 - Every tenth move, reduces the reward by 50 points.
 	      reward = reward - 50;
 
@@ -67,7 +66,7 @@ public class Opoly {
 	    }
 	  }
 
-	  public void spinAndMove(){
+	  public static void spinAndMove(){
 	    turnNumber++; //adds a turn
 	    Opoly.spin(); //sets a number to the spin variable
 	    Opoly.move(); //moves the position
@@ -81,14 +80,14 @@ public class Opoly {
 	    }
 	  }
 
-	  public boolean isGameOver(){
+	  public static boolean isGameOver(){
 	    boolean isOver = true; //checks if game is over
 	    if (reward >= 1000) //if the reward is 1000 points or over than the game is over
 	      isOver = false;
 	    return isOver;
 	  }
 
-	  public void drawBoard(){
+	  public static void drawBoard(){
 	    if (first){ //temp variable is used to create the board for the first time
 	      board[0] = 'o';
 	      for(int i = 1; i < size; i++)
@@ -103,7 +102,7 @@ public class Opoly {
 	    first = false; //temp variable set to flase so it wont recreate the board again
 	  }
 
-	  public void displayReport(){ //displays stats
+	  public static void displayReport(){ //displays stats
 	    System.out.println("game over"); 
 	    System.out.println("rounds of play: " + turnNumber);
 	    System.out.println("final reward: " + reward);
