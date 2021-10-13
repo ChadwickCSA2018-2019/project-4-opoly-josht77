@@ -17,11 +17,11 @@ public class Opoly {
 	private int overlap;
 	// builds the board
 	String board = "";
+	// Random value
 	private Random random;
 
 	/**
-	 * Constructs the opoly board size and random value 
-	 * Opoly Class
+	 * Constructs the opoly board size and random value.
 	 * 
 	 * @param bs the size of the board
 	 */
@@ -32,6 +32,7 @@ public class Opoly {
 
 	/**
 	 * Constructs the opoly games board size and random seed for testing
+	 * 
 	 * @param bs the size of the board
 	 * @param seed for testing the random spin number
 	 */
@@ -41,8 +42,8 @@ public class Opoly {
 	}
 
 	/**
-	* Plays the game by calling to the other methods
-	*/
+	 * Plays the game by calling to the other methods
+	 */
 	public void playGame() {
 		initializeGame();
 		while (isGameOver() == false) {
@@ -56,15 +57,15 @@ public class Opoly {
 	}
 
 	/**
-	* Sets the default values for the game
-	*/
+	 * Sets the default values for the game
+	 */
 	public void initializeGame() {
 		position = 0;
 		reward = 100;
 	}
 
 	/**
-	 * will choose a value randomly from 1 to 5
+	 * Chooses a value randomly from 1 to 5
 	 * 
 	 * @return a random value from 1 to 5
 	 */
@@ -73,8 +74,9 @@ public class Opoly {
 	}
 
 	/**
-	* Changes the position and gives the amount/reward based on the position of the spin
-	*/
+	 * Changes the position and gives the amount/reward based on the position of the
+	 * spin
+	 */
 	private void move() {
 		position = position + spin();
 		if (position >= boardSize) {
@@ -95,8 +97,8 @@ public class Opoly {
 	}
 
 	/**
-	* Initialize the movements of the game
-	*/
+	 * Initializes the movements of the game
+	 */
 	public void spinAndMove() {
 		numRounds++;
 		spin();
@@ -105,10 +107,10 @@ public class Opoly {
 	}
 
 	/**
-	 * Returns <code>true</code> if reward is >= 1000 then code is true 
+	 * Returns <code>true</code> if reward is >= 1000 then code is true
 	 * 
-	 * @return <code>true</code> if reward is >= to 1000 then code is true and game ends
-	 *         <code>false</code> otherwise continue to play
+	 * @return <code>true</code> if reward is >= to 1000 then code is true and game;
+	 *         ends <code>false</code> otherwise continue to play.
 	 */
 	private boolean isGameOver() {
 		if (reward >= 1000) {
@@ -120,8 +122,8 @@ public class Opoly {
 	}
 
 	/**
-	* Prints out either "o" or "*" on the game board
-	*/
+	 * Prints out either "o" or "*" on the game board
+	 */
 	private void drawBoard() {
 		for (int i = 0; i < boardSize; i++) {
 			if (i == position) {
@@ -135,8 +137,8 @@ public class Opoly {
 	}
 
 	/**
-	* Prints out the results when the game is over
-	*/
+	 * Prints out the results when the game is over
+	 */
 	public void displayReport() {
 		System.out.println("game over");
 		System.out.println("rounds of play: " + numRounds);
